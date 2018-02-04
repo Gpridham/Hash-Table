@@ -1,0 +1,888 @@
+#!/bin/sh
+# This is a shell archive (produced by GNU sharutils 4.7).
+# To extract the files from this archive, save it to some FILE, remove
+# everything before the `#!/bin/sh' line above, then type `sh FILE'.
+#
+lock_dir=_sh27273
+# Made on 2018-01-30 23:43 EST by <n01383793@osprey.unfcsd.unf.edu>.
+# Source directory was `/home/93/n01383793/COP 3404/Proj1/testDir'.
+#
+# Existing files will *not* be overwritten, unless `-c' is specified.
+#
+# This shar contains:
+# length mode       name
+# ------ ---------- ------------------------------------------
+#   7055 -rw-r--r-- Hash.java
+#     40 -rw-r--r-- makefile
+#     26 -rwxr-xr-x p1
+#   1449 -rw-r--r-- testFile.txt
+#   1153 -rw-r--r-- text.txt
+#  10426 -rw-r--r-- typescript
+#
+MD5SUM=${MD5SUM-md5sum}
+f=`${MD5SUM} --version | egrep '^md5sum .*(core|text)utils'`
+test -n "${f}" && md5check=true || md5check=false
+${md5check} || \
+  echo 'Note: not verifying md5sums.  Consider installing GNU coreutils.'
+save_IFS="${IFS}"
+IFS="${IFS}:"
+gettext_dir=FAILED
+locale_dir=FAILED
+first_param="$1"
+for dir in $PATH
+do
+  if test "$gettext_dir" = FAILED && test -f $dir/gettext \
+     && ($dir/gettext --version >/dev/null 2>&1)
+  then
+    case `$dir/gettext --version 2>&1 | sed 1q` in
+      *GNU*) gettext_dir=$dir ;;
+    esac
+  fi
+  if test "$locale_dir" = FAILED && test -f $dir/shar \
+     && ($dir/shar --print-text-domain-dir >/dev/null 2>&1)
+  then
+    locale_dir=`$dir/shar --print-text-domain-dir`
+  fi
+done
+IFS="$save_IFS"
+if test "$locale_dir" = FAILED || test "$gettext_dir" = FAILED
+then
+  echo=echo
+else
+  TEXTDOMAINDIR=$locale_dir
+  export TEXTDOMAINDIR
+  TEXTDOMAIN=sharutils
+  export TEXTDOMAIN
+  echo="$gettext_dir/gettext -s"
+fi
+if (echo "testing\c"; echo 1,2,3) | grep c >/dev/null
+then if (echo -n test; echo 1,2,3) | grep n >/dev/null
+     then shar_n= shar_c='
+'
+     else shar_n=-n shar_c= ; fi
+else shar_n= shar_c='\c' ; fi
+f=shar-touch.$$
+st1=200112312359.59
+st2=123123592001.59
+st2tr=123123592001.5 # old SysV 14-char limit
+st3=1231235901
+
+if touch -am -t ${st1} ${f} >/dev/null 2>&1 && \
+   test ! -f ${st1} && test -f ${f}; then
+  shar_touch='touch -am -t $1$2$3$4$5$6.$7 "$8"'
+
+elif touch -am ${st2} ${f} >/dev/null 2>&1 && \
+   test ! -f ${st2} && test ! -f ${st2tr} && test -f ${f}; then
+  shar_touch='touch -am $3$4$5$6$1$2.$7 "$8"'
+
+elif touch -am ${st3} ${f} >/dev/null 2>&1 && \
+   test ! -f ${st3} && test -f ${f}; then
+  shar_touch='touch -am $3$4$5$6$2 "$8"'
+
+else
+  shar_touch=:
+  echo
+  ${echo} 'WARNING: not restoring timestamps.  Consider getting and'
+  ${echo} 'installing GNU `touch'\'', distributed in GNU coreutils...'
+  echo
+fi
+rm -f ${st1} ${st2} ${st2tr} ${st3} ${f}
+#
+if test ! -d ${lock_dir}
+then : ; else ${echo} 'lock directory '${lock_dir}' exists'
+  exit 1
+fi
+if mkdir ${lock_dir}
+then ${echo} 'x - created lock directory `'${lock_dir}\''.'
+else ${echo} 'x - failed to create lock directory `'${lock_dir}\''.'
+  exit 1
+fi
+# ============= Hash.java ==============
+if test -f 'Hash.java' && test "$first_param" != -c; then
+  ${echo} 'x -SKIPPING Hash.java (file already exists)'
+else
+${echo} 'x - extracting Hash.java (text)'
+  sed 's/^X//' << 'SHAR_EOF' > 'Hash.java' &&
+import java.util.*;
+import java.io.*;
+X
+/*
+X		
+X		
+X		Do i need to worry if the formatting of Input is Wrong? Or not as Expected?
+X		How big does hash table need to be?
+X		
+X		CAN determine hash table size by first getting user input and storing into arraylist
+X		and have the hash table scale to be a certain size larger than the total amount of 
+X		elements in arraylist
+X
+*/
+X
+public class Hash
+{
+X	public static void main( String[] args ) throws FileNotFoundException
+X	{
+X		
+X		File file = new File(args[0]);
+X		Scanner input = new Scanner( file ); // reads file name from console
+X		String delims = "[ ]+"; // used to parsed data
+X		
+X		ArrayList<DataLink> tempList = new ArrayList<DataLink>(); 
+X			
+X		int value = 0;
+X		while( input.hasNextLine())
+X		{
+X			String dataString = input.nextLine(); // gets line
+X			String[] parsedString = dataString.split(delims); // splits the key string and following value
+X			String key = parsedString[0]; // stores key
+X			
+X			// if the key has a value following, then add
+X			// else -1 means there is no value
+X			if(parsedString.length > 1)
+X				value = Integer.parseInt(parsedString[1]);
+X			else 
+X				value = -1;
+X		
+X			tempList.add(new DataLink(key, value));
+X		}					
+X		
+X		HashTable hashTable = new HashTable( 3 * tempList.size()); // creates hashtable 3 times the number of elements
+X		DataLink link;
+X		// prints out user enter data.. FROM FILE.. 
+X		for(int index = 0; index < tempList.size(); index++)
+X		{
+X			link = tempList.get(index);
+X			int location = hashTable.hashFunc(link.getKey());
+X			
+X			if( link.getValue() != -1  ) // if attempting to insert new data
+X			{
+X				if ( hashTable.find( link.getKey() )!= null ) // if 
+X					System.out.println("ERROR " + link.getKey() + " " + "already exists at location " + location + " with value: " + hashTable.find( link.getKey() ).getValue());
+X				else
+X					hashTable.insert(tempList.get(index));
+X			}
+X			else // if trying to search for data
+X			{
+X				if( hashTable.find( link.getKey() ) != null ) // found data inof
+X					System.out.println( link.getKey() + " stored at location " + location + " with value: " + hashTable.find( link.getKey()).getValue());
+X				else  // if no data exsist
+X					System.out.println("ERROR " + link.getKey() + " not found" );
+X			}
+X	
+X			//tempList.get(index).display();
+X		}
+X		
+X		
+X	}
+X	
+X	//public static char[] getString()
+X	//{
+X		// gets user 
+X	//}
+}
+X
+X
+class DataLink
+{
+X	private String m_searchKey;
+X	private int m_value;
+X	private DataLink m_next;
+X	
+X	public DataLink(String searchKey, int value)
+X	{
+X		m_searchKey = searchKey;
+X		m_value = value;
+X		m_next = null;
+X	}
+X	
+X	public DataLink(String searchKey)
+X	{
+X		m_searchKey = searchKey;
+X		m_next = null;
+X	}
+X	
+X	public String getKey()
+X	{
+X		//gets user key
+X		return m_searchKey;
+X	}
+X	
+X	public int getValue()
+X	{
+X		return m_value;
+X	}
+X	
+X	public void setNext(DataLink next)
+X	{
+X		m_next = next;
+X	}
+X	
+X	public DataLink getNext()
+X	{
+X		return m_next;
+X	}	
+X	
+X	public void display()
+X	{
+X		System.out.println(m_searchKey + " " +  m_value + " " );
+X	}
+X	
+} // end of DataLink
+X
+X
+X
+X
+class DataLinkList
+{
+X	private DataLink first;
+X
+X	
+X	public DataLinkList()
+X	{
+X		first = null;
+X	}
+X	
+X	public DataLink getFirst()
+X	{
+X		return first;
+X	}
+X	
+X	/*
+X		Returns DataLink if found
+X		or null if not
+X	*/
+X
+X	public DataLink find(String key) 
+X	{
+X		DataLink current = first;
+X		
+X		// loop until the key matches with a current node
+X		// or until there are no more nodes left meaning
+X		// the key is not found
+X		while( current != null  ) 
+X		{
+X			// return DataLink if key strings are same
+X			//System.out.println("Comparing: " + current.getKey() + " TO: " + key); // for debugging
+X			if(current.getKey().compareTo(key) == 0)
+X			{
+X				//System.out.println("THis is a dupe");
+X				//current.setDupe();
+X				return current;
+X			}
+X			current = current.getNext();
+X		}
+X		
+X		return null; // link not found
+X	}
+X	
+X	public void insert( DataLink link)
+X	{
+X		if( first == null)
+X			first = link;
+X		else // collision
+X		{
+X			link.setNext( first );
+X			first = link;
+X		}
+X		
+X		//first.display();
+X	}
+X	
+X	public void display()
+X	{
+X		DataLink current = first;
+X		
+X		while(current != null)
+X		{
+X			current.display();
+X			current = current.getNext();
+X		}
+X	}
+X
+}
+X
+class HashTable
+{
+X	private DataLinkList[] hashArray;
+X	private int m_size;
+X	
+X	public HashTable(int size)
+X	{
+X		m_size = size;
+X		hashArray = new DataLinkList[m_size];	
+X		
+X		// fills the array
+X		for(int index = 0; index < m_size; index++)
+X		{
+X			hashArray[index] = new DataLinkList();
+X		}
+X		
+X	}
+X	
+X	// returns DataLink if key found,
+X	// return null if not found
+X	public DataLink find(String key)
+X	{
+X		int location = hashFunc( key );
+X		
+X		return hashArray[location].find( key );
+X		
+X			//System.out.println("ERROR " + key.getKey() + " " + "already exists and location " + location);
+X		
+X		// return location of value
+X		// or return location not found
+X		// if end of array is reached, wrap aroud to beginning using %
+X	}
+X	
+X	// checks if there is a node already at hash locations
+X	public boolean collision(int location)
+X	{
+X		return hashArray[location].getFirst() != null;
+X	}
+X	
+X	public void insert(DataLink link)
+X	{
+X		int location = hashFunc( link.getKey() );
+X		
+X		if( collision( location ) )
+X		{
+X			System.out.println("COLLISION DETECTED, " + link.getKey() + " is sharing hash address: " +  location + " with: ");
+X			hashArray[location].display();
+X		}
+X			
+X		hashArray[location].insert( link );
+X		System.out.println("Inserted: " + link.getKey() + " into hash table at location  " + location + " with value: " + link.getValue());
+X		
+X		
+X		/*
+X		// if Dulicate key
+X		if( find( link.getKey() ) != null )
+X		{
+X			if( link.getValue() > -1 ) // has value
+X				System.out.println("ERROR " + link.getKey() + " " + "already exists at location " + location + " with value: " + find( link.getKey() ).getValue());
+X			else
+X				System.out.println( link.getKey() + " stored at location " + location + " with value: " + find( link.getKey()).getValue());
+X		}
+X		else // if key not found
+X		{
+X			if( link.getValue() == -1 ) // user didnt enter in value for key
+X				System.out.println("ERROR " + link.getKey() + " not found" );
+X			else
+X			{
+X				hashArray[location].insert( link );
+X				System.out.println("Inserted: " + link.getKey() + " into hash table at location  " + location + " with value: " + link.getValue());
+X			}
+X		}
+X		*/
+X	}
+X	
+X	// NOT USING
+X	/*
+X	public boolean duplicate(DataLink link)
+X	{
+X		if( find( link.getKey()) != null && link.getValue() != -1 )
+X			return true;
+X		else 
+X			return false;
+X	}
+X	
+X	public void displayMoss()
+X	{
+X		hashArray[46].display();
+X	}
+X	*/
+X	// hash search key 
+X	// return index value
+X	
+X	public int hashFunc(String key)
+X	{
+X		int location = 0;
+X		
+X		for(int index = 0; index < key.length(); index++)
+X		{
+X			int letter = key.charAt(index) - 96; // gets character code
+X			location  = (location * 27 + letter) % m_size;
+X		}
+X		
+X		return location;
+X	}
+X	
+}
+X
+SHAR_EOF
+  (set 20 18 01 20 14 09 45 'Hash.java'; eval "$shar_touch") &&
+  chmod 0644 'Hash.java'
+if test $? -ne 0
+then ${echo} 'restore of Hash.java failed'
+fi
+  if ${md5check}
+  then (
+       ${MD5SUM} -c >/dev/null 2>&1 || ${echo} 'Hash.java: MD5 check failed'
+       ) << \SHAR_EOF
+62c36bde6dc1564569864d184098abbd  Hash.java
+SHAR_EOF
+  else
+test `LC_ALL=C wc -c < 'Hash.java'` -ne 7055 && \
+  ${echo} 'restoration warning:  size of Hash.java is not 7055'
+  fi
+fi
+# ============= makefile ==============
+if test -f 'makefile' && test "$first_param" != -c; then
+  ${echo} 'x -SKIPPING makefile (file already exists)'
+else
+${echo} 'x - extracting makefile (text)'
+  sed 's/^X//' << 'SHAR_EOF' > 'makefile' &&
+Hash.class: Hash.java
+X	javac Hash.java
+X
+SHAR_EOF
+  (set 20 18 01 30 23 21 12 'makefile'; eval "$shar_touch") &&
+  chmod 0644 'makefile'
+if test $? -ne 0
+then ${echo} 'restore of makefile failed'
+fi
+  if ${md5check}
+  then (
+       ${MD5SUM} -c >/dev/null 2>&1 || ${echo} 'makefile: MD5 check failed'
+       ) << \SHAR_EOF
+4de9fa8c42a4a08737d10ebcf4c76d70  makefile
+SHAR_EOF
+  else
+test `LC_ALL=C wc -c < 'makefile'` -ne 40 && \
+  ${echo} 'restoration warning:  size of makefile is not 40'
+  fi
+fi
+# ============= p1 ==============
+if test -f 'p1' && test "$first_param" != -c; then
+  ${echo} 'x -SKIPPING p1 (file already exists)'
+else
+${echo} 'x - extracting p1 (text)'
+  sed 's/^X//' << 'SHAR_EOF' > 'p1' &&
+#!/bin/bash
+X
+java Hash $1
+SHAR_EOF
+  (set 20 18 01 20 14 20 24 'p1'; eval "$shar_touch") &&
+  chmod 0755 'p1'
+if test $? -ne 0
+then ${echo} 'restore of p1 failed'
+fi
+  if ${md5check}
+  then (
+       ${MD5SUM} -c >/dev/null 2>&1 || ${echo} 'p1: MD5 check failed'
+       ) << \SHAR_EOF
+1d8dd79f9286317e1e1412992369fc3e  p1
+SHAR_EOF
+  else
+test `LC_ALL=C wc -c < 'p1'` -ne 26 && \
+  ${echo} 'restoration warning:  size of p1 is not 26'
+  fi
+fi
+# ============= testFile.txt ==============
+if test -f 'testFile.txt' && test "$first_param" != -c; then
+  ${echo} 'x -SKIPPING testFile.txt (file already exists)'
+else
+${echo} 'x - extracting testFile.txt (text)'
+  sed 's/^X//' << 'SHAR_EOF' > 'testFile.txt' &&
+moss 25 
+eno 
+fred 
+gorge 18
+moss 16
+moss 
+eno 22
+sponge 24
+bob 22
+square 
+pants
+bob 
+sponge 3
+eno 2
+sundriness 4
+capybara 3
+trembler 3
+scoke 4
+imposingness 3
+undesisting 5
+unwrung 6
+roselike 7
+resale 3 
+operationalism 3
+cinemascope 3
+femicide 3
+graspable 2
+mylitta 2
+abba 1 
+geanticline 5 
+subinfer 1
+nonheroical 2 
+tampere 3
+hindarfjall 4
+grandness 5
+proteus 6
+irak 6 
+unsquarable 2
+infarct 3
+ascariasis 4
+hypertensinase 4
+pulse 2
+bloat 1 
+accomplishable 1 
+retarder 1
+coleoptera 1
+vortices 1
+rile 1
+cornual 1
+fletcherising 1
+subtransverse 1
+puritanicalness 1
+ella 1
+laminate 1
+ectopic 1
+allomerization 1
+sterical 1
+viscountship 1
+ecliptically 1
+floorwalker 1
+effectualness 1
+dungeness 1
+boronia 1
+nekhebet 1
+eyeshot 1
+mechanize 1
+sassasanidae 1
+kinetography 1
+nongermane 1
+studying 1
+illuviums 1
+incorruption 1
+prejustifying 1
+kindheartedness 1
+untransforming 1
+lockett 1
+dyeweed 1
+mishnaic 1
+chanukah 1
+denier 1
+pedesis 1
+beyondness 1
+nonathletically 1
+compossibility 1
+precounselled 1
+unpromoted 1
+hypopnea 1 
+discanter 2
+nonrelative 2
+antennary 2
+neilson 2
+unrescuable 2
+helmless 2
+triangular 2
+ake 2
+indescribably 2
+encomienda 2
+swagman 2
+outvoting 2
+fall 2
+tern 2
+mulligrubs 2
+undertenure 2
+sternpost 2
+grenadierial 2
+hermit 2
+apperceived 2
+spearwort 2
+nonreplication 3 
+katherine 3
+luffa 3
+vivisector 3
+stylish 3
+azotobacter 3
+SHAR_EOF
+  (set 20 18 01 20 14 09 45 'testFile.txt'; eval "$shar_touch") &&
+  chmod 0644 'testFile.txt'
+if test $? -ne 0
+then ${echo} 'restore of testFile.txt failed'
+fi
+  if ${md5check}
+  then (
+       ${MD5SUM} -c >/dev/null 2>&1 || ${echo} 'testFile.txt: MD5 check failed'
+       ) << \SHAR_EOF
+0abde3a5b1dedd5d9bd918ee770e9176  testFile.txt
+SHAR_EOF
+  else
+test `LC_ALL=C wc -c < 'testFile.txt'` -ne 1449 && \
+  ${echo} 'restoration warning:  size of testFile.txt is not 1449'
+  fi
+fi
+# ============= text.txt ==============
+if test -f 'text.txt' && test "$first_param" != -c; then
+  ${echo} 'x -SKIPPING text.txt (file already exists)'
+else
+${echo} 'x - extracting text.txt (text)'
+  sed 's/^X//' << 'SHAR_EOF' > 'text.txt' &&
+Gabriel Pridham
+N01383793
+COP 3404
+Project 1
+X
+Purpose:
+X
+X	Creating a Hash table that is capable of storing a value and handles collision.
+X	For the purpose of having a symbol table to be used by the assembler
+X
+General Description:
+X		Compile: make
+X		Execute: ./p1 filename
+X		
+X		filename = user entered txt file.
+X 
+X		Reads in a text file with an expected format of a String followed by a value 
+X		or a string followed by nothing.
+X			
+X			EX: moss 25
+X			    moss
+X			    eno 12
+X		
+X		If the string is followed by a value, then hash the function, if string already exist
+X		in hash table, then do NOT override the value.
+X		
+X		If string is NOT followed by a value, then hash the function, if string already exist
+X		in hash table, then print out information.
+X
+X		Data is first stored into an ArrayList, and the Hash table size is 3 x ArrayList.size() 
+X		which insures the Hash table is big enough to avoid to much collision. 
+X
+X		Collision is dealt with by creating a linked list within each hash cell, therefore if 
+X		different strings hash to same location, they share the same hash cell and are linked 
+X		together.
+X		
+X		
+X	
+X	
+SHAR_EOF
+  (set 20 18 01 30 23 31 21 'text.txt'; eval "$shar_touch") &&
+  chmod 0644 'text.txt'
+if test $? -ne 0
+then ${echo} 'restore of text.txt failed'
+fi
+  if ${md5check}
+  then (
+       ${MD5SUM} -c >/dev/null 2>&1 || ${echo} 'text.txt: MD5 check failed'
+       ) << \SHAR_EOF
+dffcb2630bd9fae3cc32dab18b657693  text.txt
+SHAR_EOF
+  else
+test `LC_ALL=C wc -c < 'text.txt'` -ne 1153 && \
+  ${echo} 'restoration warning:  size of text.txt is not 1153'
+  fi
+fi
+# ============= typescript ==============
+if test -f 'typescript' && test "$first_param" != -c; then
+  ${echo} 'x -SKIPPING typescript (file already exists)'
+else
+${echo} 'x - extracting typescript (text)'
+  sed 's/^X//' << 'SHAR_EOF' > 'typescript' &&
+Script started on Tue 30 Jan 2018 11:33:53 PM EST
+X]0;n01383793@osprey:~/COP 3404/Proj1/testDir[?1034h[n01383793@osprey testDir]$ ls
+project1  typescript
+X]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ pro[K[K[Kunshar project1
+/home/93/n01383793/COP 3404/Proj1/testDir/project1:
+x - created lock directory `_sh27018'.
+x - extracting Hash.java (binary)
+x - extracting makefile (text)
+x - extracting p1 (text)
+x - extracting testFile.txt (binary)
+x - extracting text.txt (binary)
+x - removed lock directory `_sh27018'.
+X]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ ls
+Hash.java  makefile  [0m[38;5;34mp1[0m  project1  testFile.txt  text.txt  typescript
+X[m]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ make
+javac Hash.java
+X]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ ./p1 testf[KFile.txt
+Inserted: moss into hash table at location  244 with value: 25
+ERROR eno not found
+ERROR fred not found
+Inserted: gorge into hash table at location  230 with value: 18
+ERROR moss already exists at location 244 with value: 25
+moss stored at location 244 with value: 25
+Inserted: eno into hash table at location  276 with value: 22
+Inserted: sponge into hash table at location  320 with value: 24
+Inserted: bob into hash table at location  155 with value: 22
+ERROR square not found
+ERROR pants not found
+bob stored at location 155 with value: 22
+ERROR sponge already exists at location 320 with value: 24
+ERROR eno already exists at location 276 with value: 22
+Inserted: sundriness into hash table at location  10 with value: 4
+Inserted: capybara into hash table at location  91 with value: 3
+Inserted: trembler into hash table at location  27 with value: 3
+Inserted: scoke into hash table at location  5 with value: 4
+Inserted: imposingness into hash table at location  235 with value: 3
+Inserted: undesisting into hash table at location  61 with value: 5
+Inserted: unwrung into hash table at location  196 with value: 6
+COLLISION DETECTED, roselike is sharing hash address: 320 with: 
+sponge 24 
+Inserted: roselike into hash table at location  320 with value: 7
+Inserted: resale into hash table at location  284 with value: 3
+Inserted: operationalism into hash table at location  103 with value: 3
+Inserted: cinemascope into hash table at location  23 with value: 3
+Inserted: femicide into hash table at location  158 with value: 3
+Inserted: graspable into hash table at location  275 with value: 2
+Inserted: mylitta into hash table at location  262 with value: 2
+Inserted: abba into hash table at location  334 with value: 1
+Inserted: geanticline into hash table at location  311 with value: 5
+Inserted: subinfer into hash table at location  306 with value: 1
+Inserted: nonheroical into hash table at location  282 with value: 2
+Inserted: tampere into hash table at location  248 with value: 3
+Inserted: hindarfjall into hash table at location  255 with value: 4
+Inserted: grandness into hash table at location  199 with value: 5
+COLLISION DETECTED, proteus is sharing hash address: 10 with: 
+sundriness 4 
+Inserted: proteus into hash table at location  10 with value: 6
+COLLISION DETECTED, irak is sharing hash address: 155 with: 
+bob 22 
+Inserted: irak into hash table at location  155 with value: 6
+Inserted: unsquarable into hash table at location  185 with value: 2
+Inserted: infarct into hash table at location  317 with value: 3
+Inserted: ascariasis into hash table at location  163 with value: 4
+COLLISION DETECTED, hypertensinase is sharing hash address: 248 with: 
+tampere 3 
+Inserted: hypertensinase into hash table at location  248 with value: 4
+Inserted: pulse into hash table at location  149 with value: 2
+Inserted: bloat into hash table at location  200 with value: 1
+Inserted: accomplishable into hash table at location  257 with value: 1
+Inserted: retarder into hash table at location  297 with value: 1
+COLLISION DETECTED, coleoptera is sharing hash address: 244 with: 
+moss 25 
+Inserted: coleoptera into hash table at location  244 with value: 1
+Inserted: vortices into hash table at location  109 with value: 1
+Inserted: rile into hash table at location  32 with value: 1
+Inserted: cornual into hash table at location  192 with value: 1
+Inserted: fletcherising into hash table at location  259 with value: 1
+COLLISION DETECTED, subtransverse is sharing hash address: 257 with: 
+accomplishable 1 
+Inserted: subtransverse into hash table at location  257 with value: 1
+Inserted: puritanicalness into hash table at location  127 with value: 1
+Inserted: ella into hash table at location  100 with value: 1
+COLLISION DETECTED, laminate is sharing hash address: 149 with: 
+pulse 2 
+Inserted: laminate into hash table at location  149 with value: 1
+Inserted: ectopic into hash table at location  129 with value: 1
+COLLISION DETECTED, allomerization is sharing hash address: 320 with: 
+roselike 7 
+sponge 24 
+Inserted: allomerization into hash table at location  320 with value: 1
+Inserted: sterical into hash table at location  291 with value: 1
+COLLISION DETECTED, viscountship is sharing hash address: 259 with: 
+fletcherising 1 
+Inserted: viscountship into hash table at location  259 with value: 1
+Inserted: ecliptically into hash table at location  295 with value: 1
+Inserted: floorwalker into hash table at location  270 with value: 1
+COLLISION DETECTED, effectualness is sharing hash address: 334 with: 
+abba 1 
+Inserted: effectualness into hash table at location  334 with value: 1
+Inserted: dungeness into hash table at location  28 with value: 1
+Inserted: boronia into hash table at location  118 with value: 1
+Inserted: nekhebet into hash table at location  254 with value: 1
+Inserted: eyeshot into hash table at location  119 with value: 1
+Inserted: mechanize into hash table at location  104 with value: 1
+Inserted: sassasanidae into hash table at location  122 with value: 1
+Inserted: kinetography into hash table at location  187 with value: 1
+COLLISION DETECTED, nongermane is sharing hash address: 104 with: 
+mechanize 1 
+Inserted: nongermane into hash table at location  104 with value: 1
+Inserted: studying into hash table at location  169 with value: 1
+Inserted: illuviums into hash table at location  280 with value: 1
+Inserted: incorruption into hash table at location  86 with value: 1
+Inserted: prejustifying into hash table at location  205 with value: 1
+Inserted: kindheartedness into hash table at location  172 with value: 1
+COLLISION DETECTED, untransforming is sharing hash address: 187 with: 
+kinetography 1 
+Inserted: untransforming into hash table at location  187 with value: 1
+Inserted: lockett into hash table at location  182 with value: 1
+Inserted: dyeweed into hash table at location  301 with value: 1
+Inserted: mishnaic into hash table at location  174 with value: 1
+Inserted: chanukah into hash table at location  251 with value: 1
+Inserted: denier into hash table at location  153 with value: 1
+Inserted: pedesis into hash table at location  73 with value: 1
+Inserted: beyondness into hash table at location  82 with value: 1
+Inserted: nonathletically into hash table at location  223 with value: 1
+Inserted: compossibility into hash table at location  268 with value: 1
+Inserted: precounselled into hash table at location  229 with value: 1
+Inserted: unpromoted into hash table at location  31 with value: 1
+Inserted: hypopnea into hash table at location  208 with value: 1
+COLLISION DETECTED, discanter is sharing hash address: 27 with: 
+trembler 3 
+Inserted: discanter into hash table at location  27 with value: 2
+COLLISION DETECTED, nonrelative is sharing hash address: 5 with: 
+scoke 4 
+Inserted: nonrelative into hash table at location  5 with value: 2
+COLLISION DETECTED, antennary is sharing hash address: 268 with: 
+compossibility 1 
+Inserted: antennary into hash table at location  268 with value: 2
+COLLISION DETECTED, neilson is sharing hash address: 86 with: 
+incorruption 1 
+Inserted: neilson into hash table at location  86 with value: 2
+COLLISION DETECTED, unrescuable is sharing hash address: 23 with: 
+cinemascope 3 
+Inserted: unrescuable into hash table at location  23 with value: 2
+Inserted: helmless into hash table at location  37 with value: 2
+Inserted: triangular into hash table at location  171 with value: 2
+COLLISION DETECTED, ake is sharing hash address: 5 with: 
+nonrelative 2 
+scoke 4 
+Inserted: ake into hash table at location  5 with value: 2
+Inserted: indescribably into hash table at location  313 with value: 2
+Inserted: encomienda into hash table at location  19 with value: 2
+COLLISION DETECTED, swagman is sharing hash address: 32 with: 
+rile 1 
+Inserted: swagman into hash table at location  32 with value: 2
+COLLISION DETECTED, outvoting is sharing hash address: 295 with: 
+ecliptically 1 
+Inserted: outvoting into hash table at location  295 with value: 2
+Inserted: fall into hash table at location  147 with value: 2
+Inserted: tern into hash table at location  59 with value: 2
+Inserted: mulligrubs into hash table at location  154 with value: 2
+Inserted: undertenure into hash table at location  329 with value: 2
+Inserted: sternpost into hash table at location  74 with value: 2
+Inserted: grenadierial into hash table at location  273 with value: 2
+Inserted: hermit into hash table at location  335 with value: 2
+Inserted: apperceived into hash table at location  274 with value: 2
+Inserted: spearwort into hash table at location  209 with value: 2
+Inserted: nonreplication into hash table at location  131 with value: 3
+Inserted: katherine into hash table at location  95 with value: 3
+Inserted: luffa into hash table at location  316 with value: 3
+Inserted: vivisector into hash table at location  252 with value: 3
+Inserted: stylish into hash table at location  80 with value: 3
+Inserted: azotobacter into hash table at location  324 with value: 3
+X]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ ls
+DataLink.class      Hash.class  HashTable.class  [0m[38;5;34mp1[0m        testFile.txt  typescript
+DataLinkList.class  Hash.java   makefile         project1  text.txt
+X[m]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ exit
+exit
+X
+Script done on Tue 30 Jan 2018 11:34:32 PM EST
+SHAR_EOF
+  (set 20 18 01 30 23 34 32 'typescript'; eval "$shar_touch") &&
+  chmod 0644 'typescript'
+if test $? -ne 0
+then ${echo} 'restore of typescript failed'
+fi
+  if ${md5check}
+  then (
+       ${MD5SUM} -c >/dev/null 2>&1 || ${echo} 'typescript: MD5 check failed'
+       ) << \SHAR_EOF
+391409e2ad4c0b01072b75b187975b29  typescript
+SHAR_EOF
+  else
+test `LC_ALL=C wc -c < 'typescript'` -ne 10426 && \
+  ${echo} 'restoration warning:  size of typescript is not 10426'
+  fi
+fi
+if rm -fr ${lock_dir}
+then ${echo} 'x - removed lock directory `'${lock_dir}\''.'
+else ${echo} 'x - failed to remove lock directory `'${lock_dir}\''.'
+  exit 1
+fi
+exit 0

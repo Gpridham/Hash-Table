@@ -1,0 +1,180 @@
+Script started on Tue 30 Jan 2018 11:33:53 PM EST
+]0;n01383793@osprey:~/COP 3404/Proj1/testDir[?1034h[n01383793@osprey testDir]$ ls
+project1  typescript
+]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ pro[K[K[Kunshar project1
+/home/93/n01383793/COP 3404/Proj1/testDir/project1:
+x - created lock directory `_sh27018'.
+x - extracting Hash.java (binary)
+x - extracting makefile (text)
+x - extracting p1 (text)
+x - extracting testFile.txt (binary)
+x - extracting text.txt (binary)
+x - removed lock directory `_sh27018'.
+]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ ls
+Hash.java  makefile  [0m[38;5;34mp1[0m  project1  testFile.txt  text.txt  typescript
+[m]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ make
+javac Hash.java
+]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ ./p1 testf[KFile.txt
+Inserted: moss into hash table at location  244 with value: 25
+ERROR eno not found
+ERROR fred not found
+Inserted: gorge into hash table at location  230 with value: 18
+ERROR moss already exists at location 244 with value: 25
+moss stored at location 244 with value: 25
+Inserted: eno into hash table at location  276 with value: 22
+Inserted: sponge into hash table at location  320 with value: 24
+Inserted: bob into hash table at location  155 with value: 22
+ERROR square not found
+ERROR pants not found
+bob stored at location 155 with value: 22
+ERROR sponge already exists at location 320 with value: 24
+ERROR eno already exists at location 276 with value: 22
+Inserted: sundriness into hash table at location  10 with value: 4
+Inserted: capybara into hash table at location  91 with value: 3
+Inserted: trembler into hash table at location  27 with value: 3
+Inserted: scoke into hash table at location  5 with value: 4
+Inserted: imposingness into hash table at location  235 with value: 3
+Inserted: undesisting into hash table at location  61 with value: 5
+Inserted: unwrung into hash table at location  196 with value: 6
+COLLISION DETECTED, roselike is sharing hash address: 320 with: 
+sponge 24 
+Inserted: roselike into hash table at location  320 with value: 7
+Inserted: resale into hash table at location  284 with value: 3
+Inserted: operationalism into hash table at location  103 with value: 3
+Inserted: cinemascope into hash table at location  23 with value: 3
+Inserted: femicide into hash table at location  158 with value: 3
+Inserted: graspable into hash table at location  275 with value: 2
+Inserted: mylitta into hash table at location  262 with value: 2
+Inserted: abba into hash table at location  334 with value: 1
+Inserted: geanticline into hash table at location  311 with value: 5
+Inserted: subinfer into hash table at location  306 with value: 1
+Inserted: nonheroical into hash table at location  282 with value: 2
+Inserted: tampere into hash table at location  248 with value: 3
+Inserted: hindarfjall into hash table at location  255 with value: 4
+Inserted: grandness into hash table at location  199 with value: 5
+COLLISION DETECTED, proteus is sharing hash address: 10 with: 
+sundriness 4 
+Inserted: proteus into hash table at location  10 with value: 6
+COLLISION DETECTED, irak is sharing hash address: 155 with: 
+bob 22 
+Inserted: irak into hash table at location  155 with value: 6
+Inserted: unsquarable into hash table at location  185 with value: 2
+Inserted: infarct into hash table at location  317 with value: 3
+Inserted: ascariasis into hash table at location  163 with value: 4
+COLLISION DETECTED, hypertensinase is sharing hash address: 248 with: 
+tampere 3 
+Inserted: hypertensinase into hash table at location  248 with value: 4
+Inserted: pulse into hash table at location  149 with value: 2
+Inserted: bloat into hash table at location  200 with value: 1
+Inserted: accomplishable into hash table at location  257 with value: 1
+Inserted: retarder into hash table at location  297 with value: 1
+COLLISION DETECTED, coleoptera is sharing hash address: 244 with: 
+moss 25 
+Inserted: coleoptera into hash table at location  244 with value: 1
+Inserted: vortices into hash table at location  109 with value: 1
+Inserted: rile into hash table at location  32 with value: 1
+Inserted: cornual into hash table at location  192 with value: 1
+Inserted: fletcherising into hash table at location  259 with value: 1
+COLLISION DETECTED, subtransverse is sharing hash address: 257 with: 
+accomplishable 1 
+Inserted: subtransverse into hash table at location  257 with value: 1
+Inserted: puritanicalness into hash table at location  127 with value: 1
+Inserted: ella into hash table at location  100 with value: 1
+COLLISION DETECTED, laminate is sharing hash address: 149 with: 
+pulse 2 
+Inserted: laminate into hash table at location  149 with value: 1
+Inserted: ectopic into hash table at location  129 with value: 1
+COLLISION DETECTED, allomerization is sharing hash address: 320 with: 
+roselike 7 
+sponge 24 
+Inserted: allomerization into hash table at location  320 with value: 1
+Inserted: sterical into hash table at location  291 with value: 1
+COLLISION DETECTED, viscountship is sharing hash address: 259 with: 
+fletcherising 1 
+Inserted: viscountship into hash table at location  259 with value: 1
+Inserted: ecliptically into hash table at location  295 with value: 1
+Inserted: floorwalker into hash table at location  270 with value: 1
+COLLISION DETECTED, effectualness is sharing hash address: 334 with: 
+abba 1 
+Inserted: effectualness into hash table at location  334 with value: 1
+Inserted: dungeness into hash table at location  28 with value: 1
+Inserted: boronia into hash table at location  118 with value: 1
+Inserted: nekhebet into hash table at location  254 with value: 1
+Inserted: eyeshot into hash table at location  119 with value: 1
+Inserted: mechanize into hash table at location  104 with value: 1
+Inserted: sassasanidae into hash table at location  122 with value: 1
+Inserted: kinetography into hash table at location  187 with value: 1
+COLLISION DETECTED, nongermane is sharing hash address: 104 with: 
+mechanize 1 
+Inserted: nongermane into hash table at location  104 with value: 1
+Inserted: studying into hash table at location  169 with value: 1
+Inserted: illuviums into hash table at location  280 with value: 1
+Inserted: incorruption into hash table at location  86 with value: 1
+Inserted: prejustifying into hash table at location  205 with value: 1
+Inserted: kindheartedness into hash table at location  172 with value: 1
+COLLISION DETECTED, untransforming is sharing hash address: 187 with: 
+kinetography 1 
+Inserted: untransforming into hash table at location  187 with value: 1
+Inserted: lockett into hash table at location  182 with value: 1
+Inserted: dyeweed into hash table at location  301 with value: 1
+Inserted: mishnaic into hash table at location  174 with value: 1
+Inserted: chanukah into hash table at location  251 with value: 1
+Inserted: denier into hash table at location  153 with value: 1
+Inserted: pedesis into hash table at location  73 with value: 1
+Inserted: beyondness into hash table at location  82 with value: 1
+Inserted: nonathletically into hash table at location  223 with value: 1
+Inserted: compossibility into hash table at location  268 with value: 1
+Inserted: precounselled into hash table at location  229 with value: 1
+Inserted: unpromoted into hash table at location  31 with value: 1
+Inserted: hypopnea into hash table at location  208 with value: 1
+COLLISION DETECTED, discanter is sharing hash address: 27 with: 
+trembler 3 
+Inserted: discanter into hash table at location  27 with value: 2
+COLLISION DETECTED, nonrelative is sharing hash address: 5 with: 
+scoke 4 
+Inserted: nonrelative into hash table at location  5 with value: 2
+COLLISION DETECTED, antennary is sharing hash address: 268 with: 
+compossibility 1 
+Inserted: antennary into hash table at location  268 with value: 2
+COLLISION DETECTED, neilson is sharing hash address: 86 with: 
+incorruption 1 
+Inserted: neilson into hash table at location  86 with value: 2
+COLLISION DETECTED, unrescuable is sharing hash address: 23 with: 
+cinemascope 3 
+Inserted: unrescuable into hash table at location  23 with value: 2
+Inserted: helmless into hash table at location  37 with value: 2
+Inserted: triangular into hash table at location  171 with value: 2
+COLLISION DETECTED, ake is sharing hash address: 5 with: 
+nonrelative 2 
+scoke 4 
+Inserted: ake into hash table at location  5 with value: 2
+Inserted: indescribably into hash table at location  313 with value: 2
+Inserted: encomienda into hash table at location  19 with value: 2
+COLLISION DETECTED, swagman is sharing hash address: 32 with: 
+rile 1 
+Inserted: swagman into hash table at location  32 with value: 2
+COLLISION DETECTED, outvoting is sharing hash address: 295 with: 
+ecliptically 1 
+Inserted: outvoting into hash table at location  295 with value: 2
+Inserted: fall into hash table at location  147 with value: 2
+Inserted: tern into hash table at location  59 with value: 2
+Inserted: mulligrubs into hash table at location  154 with value: 2
+Inserted: undertenure into hash table at location  329 with value: 2
+Inserted: sternpost into hash table at location  74 with value: 2
+Inserted: grenadierial into hash table at location  273 with value: 2
+Inserted: hermit into hash table at location  335 with value: 2
+Inserted: apperceived into hash table at location  274 with value: 2
+Inserted: spearwort into hash table at location  209 with value: 2
+Inserted: nonreplication into hash table at location  131 with value: 3
+Inserted: katherine into hash table at location  95 with value: 3
+Inserted: luffa into hash table at location  316 with value: 3
+Inserted: vivisector into hash table at location  252 with value: 3
+Inserted: stylish into hash table at location  80 with value: 3
+Inserted: azotobacter into hash table at location  324 with value: 3
+]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ ls
+DataLink.class      Hash.class  HashTable.class  [0m[38;5;34mp1[0m        testFile.txt  typescript
+DataLinkList.class  Hash.java   makefile         project1  text.txt
+[m]0;n01383793@osprey:~/COP 3404/Proj1/testDir[n01383793@osprey testDir]$ exit
+exit
+
+Script done on Tue 30 Jan 2018 11:34:32 PM EST
